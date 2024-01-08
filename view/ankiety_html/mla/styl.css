@@ -1,0 +1,221 @@
+body {
+
+	background-color:white;	
+	font-size:13px;
+	font-family: Arial,Helvetica,sans-serif;
+	margin-right:auto;
+	margin-left:auto;
+	}
+.kontener_glowny {
+	width:865px;
+	margin-left:auto;
+	margin-right:auto;
+	
+	}
+.naglowek {
+	/*background-image:url('obrazki/naglowek.png');*/
+        border:1px solid gray;
+        border-radius:20px 20px 0 0;
+	height:50px;
+	color:#121212;
+	font-weight:bold;
+	font-size:14px;
+	}
+.stopka {
+	/*background-image:url('obrazki/stopka.png');*/
+        border:1px solid gray;
+        border-radius: 0 0 20px 20px;
+	height:50px;
+	height:50px;
+	}
+.ankieta {
+	border:1px dotted #be0807;
+	}
+.naglowek-pytania {
+	min-width:350px;
+	margin-left:10px;
+	color:#be0807;
+	font-size:13px;
+	font-weight:bold;
+	}
+.selekcik {
+	margin-top:10px;
+	margin-left:55px;
+	width:320px;
+	background: #d6d7f9;
+   	padding: 5px;
+   	font-size: 16px;
+   	border: 1px solid gray;
+   	height: 34px;
+   	margin-bottom:15px;
+	}
+.selekcik_m {
+	margin-top:0px;
+	margin-left:15px;
+	background: #d6d7f9;
+   	padding: 2px;
+   	font-size: 12px;
+   	border: 1px solid gray;
+   	height: 24px;
+   	margin-bottom:3px;
+	}
+.selekcik2 {
+	margin-top:10px;
+	margin-left:55px;
+	width:320px;
+	background: #d6d7f9;
+   	padding: 5px;
+   	font-size: 12px;
+   	border: 1px solid gray;
+   	height: 80px;
+   	margin-bottom:15px;
+	}
+.selekcik option {
+	border:1px dotted gray;}
+.pole {
+	background-color:#dadada;
+	}
+.pole2 {background-color:#EfEfEf;}
+.pole3 {background-color:white;}
+.radiobatony { 
+	font-size:11px;
+	margin-left:55px;
+	width:330px;}
+.radiobatony table {font-size:11px;}
+.ognia {
+	width:64px;
+	height:64px;
+	background-image: url(obrazki/ognia.png);}
+
+
+.tekst-powitalny{
+	margin-right:15px;
+	margin-left:15px;
+	text-align:justify;
+	background-color:white;
+	}
+.rollover_ogolny a {
+    background: url(obrazki/dane_ogolne.png) no-repeat 0px 0px;
+    width: 64px;
+    height: 64px;
+    display: block;
+   }
+.rollover_ogolny a:hover {
+    background-position: -64px 0px;
+	}
+.rollover_analiza a {
+    background: url(obrazki/analiza.png) no-repeat 0px 0px;
+    width: 64px;
+    height: 64px;
+    display: block;
+   }
+.rollover_analiza a:hover {
+    background-position: -64px 0px;
+	}
+.rollover_eksport a {
+    background: url(obrazki/eksport.png) no-repeat 0px 0px;
+    width: 64px;
+    height: 64px;
+    display: block;
+   }
+.rollover_eksport a:hover {
+    background-position: -64px 0px;
+	}
+.rollover_kontakt a {
+    background: url(obrazki/kontakt.png) no-repeat 0px 0px;
+    width: 64px;
+    height: 64px;
+    display: block;
+   }
+.rollover_kontakt a:hover {
+    background-position: -64px 0px;
+	}
+.rollover_wydruk a {
+    background: url(obrazki/wydruk.png) no-repeat 0px 0px;
+    width: 64px;
+    height: 64px;
+    display: block;
+   }
+.rollover_wydruk a:hover {
+    background-position: -64px 0px;
+	}
+.rollover_ile a {
+    background: url(obrazki/ile.png) no-repeat 0px 0px;
+    width: 64px;
+    height: 64px;
+    display: block;
+   }
+.rollover_ile a:hover {
+    background-position: -64px 0px;
+	}
+.rollover_o a {
+    background: url(obrazki/o.png) no-repeat 0px 0px;
+    width: 64px;
+    height: 64px;
+    display: block;
+   }
+.rollover_o a:hover {
+    background-position: -64px 0px;
+	}
+.slupek {
+	height:20px;
+	background: url(obrazki/slupek_tlo.png);
+	}
+.slupek3 {
+	height:20px;
+	background: url(obrazki/slupek_tlo3.png);
+	}
+.slupek5 {
+	height:20px;
+	background: url(obrazki/slupek_tlo5.png);
+	}
+.filtr {
+	float:left;
+	}
+
+	font: 0.8em/21px arial,sans-serif;
+}
+
+.checkbox, .radio {
+	width: 19px;
+	height: 25px;
+	padding: 0 5px 0 0;
+	background: url(checkbox.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+	font: 0.8em/21px arial,sans-serif;
+}
+.radio {
+	background: url(radio.png) no-repeat;
+	font: 0.8em/21px arial,sans-serif;
+}
+.select {
+	position: absolute;
+	width: 158px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+	height: 21px;
+	padding: 0 24px 0 8px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	background: url(select.png) no-repeat;
+	overflow: hidden;
+	font: 0.8em/21px arial,sans-serif;
+}
+
+.wyniki_t{
+	background-color:#e1e1e1;
+	width:200px;
+	}
+.wyniki_ile{
+	background-color:#eaeaea;
+	font-size:14px;
+	
+	}
+.kolowy {
+    background: url(obrazki/kolowy.png) no-repeat 0px 0px;
+    width: 100px;
+    height: 74px;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+   }
