@@ -1,0 +1,87 @@
+WDROŻENIE ANKIET
+1. zastopować stary serwer ankiet OK
+2. zrzucić bazę OK
+3. zaciągnąć bazę OK
+4. przepiąć domenę ankiety.wseiz.pl na Analytics OK
+
+BAZY:
+`ocena_administracji` => OK
+`ocena_administracji2` => OK
+`ocena_nakladu_pracy_studenta` => OK
+`ocena_pracy_nauczyciela` => OK
+`ocena_praktyk_zawodowych` => OK
+
+
+#TODO file for WSEiZ Analytics
+
+Małgorzata Pankowska
+malgorzata.pankowska@wseiz.pl
+Malpan06:13
+20221026
+dodano pole data_urodzenia do studenci
+Poprawiono collect_GURU:
+ - dodano datę urodzenia do INSERT
+ - poprawiono import aktywnego statusu
+
+Lista przedmiotów i kierunków dla semestru letniego 2021/11
+SELECT Lista_Semestrow.ID_LISTA_SEMESTROW, Przynaleznosc.G_ID_RODZAJ,Przynaleznosc.G_ID_TYP,Przynaleznosc.G_ID_KIERUNEK,LPrzedmiot.LP_NAZWA_PRZEDMIOTU,LPrzedmiot.ID_LPRZEDMIOT FROM LPrzedmiot INNER JOIN Lista_Semestrow ON Lista_Semestrow.ID_LISTA_SEMESTROW=LPrzedmiot.LP_ID_LISTA_SEMESTROW INNER JOIN Przynaleznosc ON Przynaleznosc.ID_PRZYNALEZNOSC=Lista_Semestrow.L_ID_PRZYNALEZNOSC WHERE Lista_Semestrow.L_ROK=2021 AND  Lista_Semestrow.L_LETNI=1;
+To samo z nazwami przemiotów:
+SELECT Lista_Semestrow.ID_LISTA_SEMESTROW, Przynaleznosc.G_ID_RODZAJ,Przynaleznosc.G_ID_TYP,Przynaleznosc.G_ID_KIERUNEK,LPrzedmiot.LP_NAZWA_PRZEDMIOTU,LPrzedmiot.ID_LPRZEDMIOT,LPrzedmiot.LP_WOLNY_ID_PRZEDMIOT, AS_Przedmiot.P_NAZWA  FROM LPrzedmiot INNER JOIN AS_Przedmiot ON AS_Przedmiot.ID_PRZEDMIOT=LPrzedmiot.LP_WOLNY_ID_PRZEDMIOT  INNER JOIN Lista_Semestrow ON Lista_Semestrow.ID_LISTA_SEMESTROW=LPrzedmiot.LP_ID_LISTA_SEMESTROW INNER JOIN Przynaleznosc ON Przynaleznosc.ID_PRZYNALEZNOSC=Lista_Semestrow.L_ID_PRZYNALEZNOSC WHERE Lista_Semestrow.L_ROK=2021 AND  Lista_Semestrow.L_LETNI=1;
+To samo z formami przedmiotów, dla Architektury stacjonarnej semestr 2 2021/22 L
+
+Tutaj dostanę listę przybitych przedmiotów
+SELECT Lista_Semestrow.ID_LISTA_SEMESTROW, Przynaleznosc.G_ID_RODZAJ,Przynaleznosc.G_ID_TYP,Przynaleznosc.G_ID_KIERUNEK,LPrzedmiot.ID_LPRZEDMIOT,LPrzedmiot.LP_WOLNY_ID_PRZEDMIOT, AS_Przedmiot.P_NAZWA,LPrzedmiot_Forma.LPF_ID_GPRZEDMIOT,GPrzedmiot.GP_ID_SPRZEDMIOT_FORMA,AS_FORMA.F_NAZWA  FROM LPrzedmiot INNER JOIN AS_Przedmiot ON AS_Przedmiot.ID_PRZEDMIOT=LPrzedmiot.LP_WOLNY_ID_PRZEDMIOT  INNER JOIN LPrzedmiot_Forma ON LPrzedmiot_Forma.LPF_ID_LPRZEDMIOT=LPrzedmiot.ID_LPRZEDMIOT INNER JOIN GPrzedmiot ON GPrzedmiot.ID_GPRZEDMIOT=LPrzedmiot_Forma.LPF_ID_GPRZEDMIOT INNER JOIN SPrzedmiot_Forma ON GPrzedmiot.GP_ID_SPRZEDMIOT_FORMA=SPrzedmiot_Forma.ID_S_PRZEDMIOT_FORMA INNER JOIN AS_Forma ON SPrzedmiot_Forma.SPF_ID_FORMA=AS_FORMA.ID_FORMA INNER JOIN Lista_Semestrow ON Lista_Semestrow.ID_LISTA_SEMESTROW=LPrzedmiot.LP_ID_LISTA_SEMESTROW INNER JOIN Przynaleznosc ON Przynaleznosc.ID_PRZYNALEZNOSC=Lista_Semestrow.L_ID_PRZYNALEZNOSC WHERE Lista_Semestrow.L_ROK=2021 AND  Lista_Semestrow.L_LETNI=1 AND Przynaleznosc.G_ID_KIERUNEK=39 AND Przynaleznosc.G_ID_TYP=72 AND Przynaleznosc.G_ID_RODZAJ=168 AND Lista_Semestrow.L_NR_SEMESTRU=2 ORDER BY P_NAZWA ASC;
+
+Tutaj dostanę listę ocen
+SELECT Przynaleznosc.G_NUMER_ALBUMU,Lista_Semestrow.ID_LISTA_SEMESTROW, Przynaleznosc.G_ID_RODZAJ,Przynaleznosc.G_ID_TYP,Przynaleznosc.G_ID_KIERUNEK,LPrzedmiot.ID_LPRZEDMIOT,LPrzedmiot.LP_WOLNY_ID_PRZEDMIOT,LPrzedmiot_Forma.LPF_ID_GPRZEDMIOT, AS_Przedmiot.P_NAZWA,LPrzedmiot_Forma.LPF_ID_GPRZEDMIOT,GPrzedmiot.GP_ID_SPRZEDMIOT_FORMA,AS_FORMA.F_NAZWA,GPracownik.GN_ID_PRACOWNIK,Osoba.OS_IMIE_I, Osoba.OS_Nazwisko,MAX(LOcena.LO_OCENA),LOcena.LO_TERMIN,LOcena.LO_DATA FROM LPrzedmiot INNER JOIN AS_Przedmiot ON AS_Przedmiot.ID_PRZEDMIOT=LPrzedmiot.LP_WOLNY_ID_PRZEDMIOT  INNER JOIN LPrzedmiot_Forma ON LPrzedmiot_Forma.LPF_ID_LPRZEDMIOT=LPrzedmiot.ID_LPRZEDMIOT INNER JOIN GPrzedmiot ON GPrzedmiot.ID_GPRZEDMIOT=LPrzedmiot_Forma.LPF_ID_GPRZEDMIOT INNER JOIN SPrzedmiot_Forma ON GPrzedmiot.GP_ID_SPRZEDMIOT_FORMA=SPrzedmiot_Forma.ID_S_PRZEDMIOT_FORMA INNER JOIN AS_Forma ON SPrzedmiot_Forma.SPF_ID_FORMA=AS_FORMA.ID_FORMA INNER JOIN Lista_Semestrow ON Lista_Semestrow.ID_LISTA_SEMESTROW=LPrzedmiot.LP_ID_LISTA_SEMESTROW INNER JOIN Przynaleznosc ON Przynaleznosc.ID_PRZYNALEZNOSC=Lista_Semestrow.L_ID_PRZYNALEZNOSC INNER JOIN GPracownik ON GPRacownik.GN_ID_GPRZEDMIOT=GPrzedmiot.ID_GPRZEDMIOT INNER JOIN AS_Pracownik ON AS_Pracownik.ID_PRACOWNIK=GPRacownik.GN_ID_PRACOWNIK INNER JOIN Osoba ON Osoba.ID_Osoba=AS_Pracownik.N_ID_OSOBA 
+INNER JOIN LOcena ON LOcena.LO_ID_LPRZEDMIOT_FORMA=LPrzedmiot_Forma.ID_LPRZEDMIOT_FORMA
+WHERE Lista_Semestrow.L_ROK=2021 AND  Lista_Semestrow.L_LETNI=1 AND Przynaleznosc.G_ID_KIERUNEK=39 AND Przynaleznosc.G_ID_TYP=72 AND Przynaleznosc.G_ID_RODZAJ=168  AND Przynaleznosc.G_NUMER_ALBUMU='20820'
+
+i tak:
+90 -5
+80 4,5
+70 4
+60 3,5
+50 3
+
+
+<table id="dtMaterialDesignExample" class="table table-striped table-condensed" cellspacing="0" width="90%" >
+             <thead>
+             <th style="font-size:0.8em;">Nr albumu</th>
+             <th style="font-size:0.8em;">Kierunek</th>
+             <th style="font-size:0.8em;">Forma</th>
+             <th style="font-size:0.8em;">Stopien</th>
+             <th style="font-size:0.8em;">Przedmiot</th>
+             <th style="font-size:0.8em;">Forma zajęć</th>
+             <th style="font-size:0.8em;">Wykładowca</th>
+             <th style="font-size:0.8em;">Ocena termin 1</th>
+             <th style="font-size:0.8em;">Ocena termin 2</th>
+             <th style="font-size:0.8em;">Ocena termin 3</th>
+              <th style="font-size:0.8em;">Forma zaliczenia</th>
+               <th style="font-size:0.8em;">Czy zaliczony</th>
+             </thead>
+             <tbody>
+                 <?php
+                 $tabelka=mysqli_query($kon,"SELECT * FROM `analiza_ocen` WHERE `rok_akademicki`='$dane_do_query[0]' AND `semestr`='$dane_do_query[1]'");
+                 foreach($tabelka as $row){
+                     switch($row['czy_zaliczony']){
+                         default:
+                            $czy_zaliczony="NIE";
+                             break;
+                             case 1:
+                                $czy_zaliczony="TAK";
+                             break;  
+                     }
+                     echo "<tr><td style=\"font-size:0.8em;\">$row[nr_albumu]</td><td style=\"font-size:0.8em;\">$row[kierunek]</td>"
+                             . "<td style=\"font-size:0.8em;\">$row[forma]</td>"
+                             . "<td style=\"font-size:0.8em;\">$row[stopien]</td><td style=\"font-size:0.8em;\">$row[przedmiot]</td>"
+                             . "<td style=\"font-size:0.8em;\">$row[forma_zajec]</td>"
+                             . "<td style=\"font-size:0.8em;\">$row[wykladowca]</td><td style=\"font-size:0.8em;\">$row[ocena_termin1]</td>"
+                             . "<td style=\"font-size:0.8em;\">$row[ocena_termin2]</td>"
+                             . "<td style=\"font-size:0.8em;\">$row[ocena_termin3]</td><td style=\"font-size:0.8em;\">$row[forma_zaliczenia]</td>"
+                             . "<td style=\"font-size:0.8em;\">$czy_zaliczony</td></tr>";
+                 }
+                 ?>
+             </tbody>
+             
+         </table>
